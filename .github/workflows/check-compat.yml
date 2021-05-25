@@ -22,13 +22,15 @@ jobs:
 
   Get-Multiple-Branches:
     runs-on: ubuntu-latest
-    name: Checkout PR
-      - steps: 
-        - uses: actions/checkout@v2
-        - with:
-          - path: $GITHUB_BASE_REF"
+    steps:
+      - name: Checkout-PR
+        uses: actions/checkout@v2
+        with:
+          path: "$GITHUB_BASE_REF"
+          
+      - name: Checkout-Main
+        uses: actions/checkout@v2
+        with:
+          path: "$GITHUB_HEAD_REF"
 
-    - name: Checkout Main
-        - uses: actions/checkout@v2
-        - with:
-          - path: "$GITHUB_HEAD_REF"
+     
