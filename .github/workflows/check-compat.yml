@@ -31,28 +31,9 @@ jobs:
     steps:
       - name: Checkout-PR
         uses: actions/checkout@v2
-        with:
-          path: "$GITHUB_BASE_REF"
 
       - run: pwd
 
       - run: ls
 
-      - run: pwd
-          
-      - name: Checkout-Main
-        uses: actions/checkout@v2
-        with:
-          path: "$GITHUB_HEAD_REF"
-
-      - run: ls
-
-      - run: pwd
-
-      - run: echo "$Checkout-Main"
-     
-      - run: git branch
-
-      - run: ls
-
-      - run: pwd
+      - run: git
