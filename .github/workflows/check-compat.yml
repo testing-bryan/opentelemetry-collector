@@ -20,6 +20,8 @@ jobs:
 
       - run: echo "${{ github.event.pull_request.head.sha }}"
 
+      - run: pwd
+
       - run: git branch
 
       - run: ls
@@ -33,6 +35,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: "$GITHUB_BASE_REF"
+
+      - run: pwd
         
       - run: git branch
 
