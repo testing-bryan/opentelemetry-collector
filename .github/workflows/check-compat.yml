@@ -6,7 +6,7 @@ on:
 
 jobs:
   Check-Compatibility:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - run: echo "$GITHUB_HEAD_REF"
       - run: echo "$GITHUB_BASE_REF"
@@ -27,7 +27,7 @@ jobs:
       - run: pwd
 
   Generate-APIDIFF-State:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
 
       - name: Checkout-Main
