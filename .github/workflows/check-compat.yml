@@ -31,9 +31,9 @@ jobs:
     steps:
       - name: Checkout-PR
         uses: actions/checkout@v2
-          with: 
-            ref: ${{ github.base_ref }}
-            path: tmp/main
+        with: 
+          ref: ${{ github.base_ref }}
+          path: tmp/main
 
       - run: pwd
 
