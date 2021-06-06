@@ -11,6 +11,14 @@ usage() {
   exit 1
 }
 
+changes_found() {
+  echo "Changes Found"
+  exit 1
+}
+
+changes_found
+
+
 dry_run=false
 package=""
 output_dir="./internal/data/apidiff"
