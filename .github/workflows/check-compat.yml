@@ -29,11 +29,14 @@ jobs:
   Generate-APIDIFF-State:
     runs-on: ubuntu-latest
     steps:
+
+      - run: mkdir tmp
+
       - name: Checkout-PR
         uses: actions/checkout@v2
         with: 
           ref: ${{ github.base_ref }}
-          path: main
+          path: tmp
 
       - run: pwd
 
@@ -50,6 +53,9 @@ jobs:
   Compare-APIDIFF-State:
     runs-on: ubuntu-latest
     steps: 
+
+      - run: ls
+      
       - name: Checkout-HEAD
         uses: actions/checkout@v2 
       
