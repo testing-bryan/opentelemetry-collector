@@ -1,4 +1,4 @@
-name: "Inform incompatible PRs"
+name: "Inform Incompatible PRs"
 on:
   pull_request:
     branches:
@@ -30,47 +30,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Checkout-PR
+      - name: Checkout-Main
         uses: actions/checkout@v2
         with: 
           ref: ${{ github.base_ref }}
-          path: main
+          path: ${{ github.base_ref }}
 
-      - name: experiment-1
+      - name: Generate-APIDIFF-State
         run: |
-          pwd
-          ls
-          cd main
-          pwd
-          ls
-          git branch
+          cd ${{ github.base_ref }}
+          make apidiff-build
       
       - name: Checkout-HEAD
         uses: actions/checkout@v2 
         with: 
-          path: HEAD
+          path: ${{ github.head_ref }}
 
-      - name: experiment-2
+      - name: Compare-APIDIFF-State
         run: |
-          pwd
-          ls
-          cd HEAD
+          cd ${{ github.head_ref }}
           pwd
           ls
           git branch
       
       - run: ls
-
-  Compare-APIDIFF-State:
-    runs-on: ubuntu-latest
-    steps: 
-
-      - name: Checkout-HEAD
-        uses: actions/checkout@v2 
-      
-      - run: pwd
-
-      - run: ls
-
-      - run: git branch
       
