@@ -42,7 +42,7 @@ jobs:
 
       - run: ls
 
-      - run: cd main
+      - run: cd tmp
 
       - run: pwd
 
@@ -55,7 +55,7 @@ jobs:
     steps: 
 
       - run: ls
-      
+
       - name: Checkout-HEAD
         uses: actions/checkout@v2 
       
