@@ -44,14 +44,14 @@ jobs:
       - name: Compatibility-Check
         run: |
           cd ${{ github.base_ref }}
-          ::group::{Generating apidiff states}
+          echo ::group::{Generating apidiff states}
           make install-tools
           export GOPATH=$HOME/go
           export PATH=$GOPATH/bin:$PATH
           make apidiff-build
-          ::endgroup::
+          echo ::endgroup::
           cd ../${{ github.head_ref }}
-          ::group::{Comparing apidiff states}
+          echo ::group::{Comparing apidiff states}
           make apidiff-compare-GA input_dir="../${{ github.base_ref }}/internal/data/apidiff"
-          ::endgroup::
+          echo ::endgroup::
       
