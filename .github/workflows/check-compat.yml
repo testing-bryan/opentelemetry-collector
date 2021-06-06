@@ -39,8 +39,7 @@ jobs:
       - name: Generate-APIDIFF-State
         run: |
           cd ${{ github.base_ref }}
-          export GOPATH=$HOME/go
-          export PATH=$GOPATH/bin:$PATH
+          make install-tools
           make apidiff-build
       
       - name: Checkout-HEAD
