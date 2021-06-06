@@ -391,3 +391,8 @@ apidiff-build:
 .PHONY: apidiff-compare
 apidiff-compare:
 	@$(foreach pkg,$(ALL_PKGS),$(call exec-command,./internal/buildscripts/compare-apidiff.sh -p $(pkg)))
+
+# Compare API state snapshots in Github Actions
+.PHONY: apidiff-compare-GA
+apidiff-compare-GA:
+	@$(foreach pkg,$(ALL_PKGS),$(call exec-command,./internal/buildscripts/compare-apidiff.sh -p $(pkg) -d $(input_dir)))

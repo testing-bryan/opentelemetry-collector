@@ -52,9 +52,7 @@ jobs:
       - name: Compare-APIDIFF-State
         run: |
           cd ${{ github.head_ref }}
-          pwd
-          ls
-          git branch
+          make apidiff-compare input_dir="../${{ github.base_ref }}/internal/data/apidiff"
       
       - run: ls
       
