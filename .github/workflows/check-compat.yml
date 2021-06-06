@@ -26,14 +26,29 @@ jobs:
 
       - run: pwd
 
-  Get-Multiple-Branches:
+  Generate-APIDIFF-State:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout-PR
         uses: actions/checkout@v2
+        with: 
+          path: main
 
       - run: pwd
 
       - run: ls
 
       - run: git branch
+
+  Compare-APIDIFF-State:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout-HEAD
+        uses: actions/checkout@v2 
+      
+      - run: pwd
+
+      - run: ls
+
+      - run: git branch
+      
