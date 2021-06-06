@@ -38,17 +38,13 @@ jobs:
           ref: ${{ github.base_ref }}
           path: tmp
 
-      - run: pwd
-
-      - run: ls
-
-      - run: cd tmp
-
-      - run: pwd
-
-      - run: ls
-
-      - run: git branch
+      - run: |
+          pwd
+          ls
+          cd tmp
+          pwd
+          ls
+          git branch
 
   Compare-APIDIFF-State:
     runs-on: ubuntu-latest
@@ -59,12 +55,6 @@ jobs:
       - name: Checkout-HEAD
         uses: actions/checkout@v2 
       
-      - run: pwd
-
-      - run: ls
-
-      - run: cd main
-
       - run: pwd
 
       - run: ls
