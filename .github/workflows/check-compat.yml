@@ -36,14 +36,6 @@ jobs:
           ref: ${{ github.base_ref }}
           path: ${{ github.base_ref }}
 
-      - name: Generate-APIDIFF-State
-        run: |
-          cd ${{ github.base_ref }}
-          make install-tools
-          export GOPATH=$HOME/go
-          export PATH=$GOPATH/bin:$PATH
-          make apidiff-build
-      
       - name: Checkout-HEAD
         uses: actions/checkout@v2 
         with: 
@@ -51,8 +43,14 @@ jobs:
 
       - name: Compare-APIDIFF-State
         run: |
+          cd ${{ github.base_ref }}
+          make install-tools
+          export GOPATH=$HOME/go
+          export PATH=$GOPATH/bin:$PATH
+          make apidiff-build
+          cd ..
           cd ${{ github.head_ref }}
-          make apidiff-compare input_dir="../${{ github.base_ref }}/internal/data/apidiff"
+          make apidiff-compare-GA input_dir="../${{ github.base_ref }}/internal/data/apidiff"
       
       - run: ls
       
