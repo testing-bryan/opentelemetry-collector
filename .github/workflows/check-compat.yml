@@ -40,6 +40,8 @@ jobs:
         run: |
           cd ${{ github.base_ref }}
           make install-tools
+          export GOPATH=$HOME/go
+          export PATH=$GOPATH/bin:$PATH
           make apidiff-build
       
       - name: Checkout-HEAD
