@@ -5,28 +5,8 @@ on:
       - main
 
 jobs:
+
   Check-Compatibility:
-    runs-on: macos-latest
-    steps:
-      - run: echo "$GITHUB_HEAD_REF"
-      - run: echo "$GITHUB_BASE_REF"
-      - run: echo "hello world"
-
-      - run: echo "${{ github.base_ref }}"
-
-      - run: echo "${{ github.base_ref.sha }}"
-      
-      - run: echo "$github.base_ref.sha"
-
-      - run: echo "${{ github.event.pull_request.head.sha }}"
-
-      - run: pwd
-
-      - run: ls
-
-      - run: pwd
-
-  Generate-APIDIFF-State:
     runs-on: macos-latest
     steps:
 
@@ -41,17 +21,18 @@ jobs:
         with: 
           path: ${{ github.head_ref }}
 
-      - name: Compatibility-Check
+      - name: Generate-Compare-apidiff
         run: |
+          echo ::group::Generating apidiff states
           cd ${{ github.base_ref }}
-          echo ::group::{Generating apidiff states}
           make install-tools
           export GOPATH=$HOME/go
           export PATH=$GOPATH/bin:$PATH
           make apidiff-build
           echo ::endgroup::
+          
+          echo ::group::Comparing apidiff states
           cd ../${{ github.head_ref }}
-          echo ::group::{Comparing apidiff states}
           make apidiff-compare-GA input_dir="../${{ github.base_ref }}/internal/data/apidiff"
           echo ::endgroup::
       
