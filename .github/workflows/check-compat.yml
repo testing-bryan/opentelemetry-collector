@@ -31,11 +31,9 @@ jobs:
     steps:
       - name: Checkout-PR
         uses: actions/checkout@v2
-        with: 
-          path: main
+          with: 
+            ref: ${{ github.base_ref }}
 
-      - run: cd main
-      
       - run: pwd
 
       - run: ls
