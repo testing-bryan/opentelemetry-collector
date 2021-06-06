@@ -35,4 +35,10 @@ jobs:
           cd ../${{ github.head_ref }}
           make apidiff-compare-GA input_dir="../${{ github.base_ref }}/internal/data/apidiff"
           echo ::endgroup::
+
+          echo "::warning file=app.js,line=1,col=5::Missing semicolon"
+          echo "::error file=app.js,line=10,col=15::Something went wrong"
+          
+          echo "::warning::Missing semicolon"
+          echo "::error::Something went wrong"
       
