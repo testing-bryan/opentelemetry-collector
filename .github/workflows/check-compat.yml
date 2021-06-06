@@ -30,27 +30,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - run: mkdir tmp
-
       - name: Checkout-PR
         uses: actions/checkout@v2
         with: 
           ref: ${{ github.base_ref }}
-          path: tmp
+          path: main
 
-      - run: |
+      - name: experiment-1
+        run: |
           pwd
           ls
-          cd tmp
+          cd main
           pwd
           ls
           git branch
+      
+      - name: Checkout-HEAD
+        uses: actions/checkout@v2 
+        with: 
+          path: HEAD
+
+      - name: experiment-2
+        run: |
+          pwd
+          ls
+          cd HEAD
+          pwd
+          ls
+          git branch
+      
+      run: ls
 
   Compare-APIDIFF-State:
     runs-on: ubuntu-latest
     steps: 
-
-      - run: ls
 
       - name: Checkout-HEAD
         uses: actions/checkout@v2 
