@@ -59,7 +59,7 @@ jobs:
           ls
           git branch
       
-      run: ls
+      - run: ls
 
   Compare-APIDIFF-State:
     runs-on: ubuntu-latest
