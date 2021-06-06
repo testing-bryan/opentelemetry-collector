@@ -39,6 +39,8 @@ jobs:
 
       - run: ls
 
+      - run: cd tmp
+
       - run: cd main
 
       - run: pwd
