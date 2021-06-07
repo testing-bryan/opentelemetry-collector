@@ -23,10 +23,6 @@ import (
 	"go.opentelemetry.io/collector/consumer"
 )
 
-// Exporter exports telemetry data from the collector to a destination.
-type Exporter interface {
-	Component
-}
 
 // TracesExporter is an Exporter that can consume traces.
 type TracesExporter interface {
