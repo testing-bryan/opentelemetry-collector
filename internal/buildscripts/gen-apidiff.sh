@@ -16,8 +16,6 @@ changes_found() {
   exit 1
 }
 
-changes_found
-
 
 dry_run=false
 package=""
