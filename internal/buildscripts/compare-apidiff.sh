@@ -12,6 +12,7 @@ usage() {
 
 package=""
 input_dir="./internal/data/apidiff"
+check_only=false
 
 
 while getopts "p:d:" o; do
@@ -21,6 +22,9 @@ while getopts "p:d:" o; do
             ;;
         d)
             input_dir=$OPTARG
+            ;;
+        c) 
+            check_only=true
             ;;
         *)
             usage
@@ -33,12 +37,23 @@ if [ -z $package ]; then
   usage
 fi
 
+changes_found() {
+  echo "Changes Found"
+  exit 1
+}
+
+
 set -e
 
 if [ -d $input_dir/$package ]; then
   changes=$(apidiff $input_dir/$package/apidiff.state $package)
   if [ ! -z "$changes" -a "$changes"!=" " ]; then
-    echo "Changes found in $package:"
-    echo "$changes"
+    SUB='Incompatible changes:'
+    if [$check_only = true -a [ "$changes" =~ .*"$SUB".* ]]; then
+      changes_found
+    else
+      echo "Changes found in $package:"
+      echo "$changes"
+    fi
   fi
 fi
